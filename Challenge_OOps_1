@@ -1,0 +1,26 @@
+class BankAccount:
+
+    def set(self,balance=0):
+        self.balance=balance
+    def deposit(self,amount):
+        self.balance += amount
+    def withdraw(self,amount):
+        self.balance -= amount
+    def get_balance(self):
+        return self.balance
+
+def processAccount(filename ):
+    with open(filename,'r') as f:
+        b = BankAccount()
+        startBal = f.readline().split()
+        startBal = float(startBal[0])
+        b.set(startBal)
+
+        for line in f:
+            fields = line.strip().split()
+            if fields[0] in 'Ww':
+                b.withdraw(float(fields[1]))
+            elif fields[0] in 'Dd':
+                b.deposit(float(fields[1]))
+
+            return b

@@ -1,0 +1,49 @@
+Create a user database (login, password, and last login timestamp) class that manages a system requiring users to
+log in before access to resources is allowed. This database class manages its users, loading any previously saved
+user information on instantiation and providing accessor functions to add or update database information. If updated,
+the database will save the new information to disk as part of its deallocation
+'''
+
+
+class database:
+    users = {
+        "root": {
+            "password": "gucci-mane",
+            "group": "admin",
+
+        }
+    }
+
+    # Form validation
+    def validate(form):
+        if len(form) > 0:
+            return False
+        return True
+
+    # Login authorization
+    def loginauth(username, password):
+        if username in users:
+            if password == users[username]["password"]:
+                print("Login successful")
+                return True
+        return False
+
+    # Login
+    def login():
+        while True:
+            username = input("Username: ")
+            if not len(username) > 0:
+                print("Username can't be blank")
+            else:
+                break
+        while True:
+            password = input("Password: ")
+            if not len(password) > 0:
+                print("Password can't be blank")
+            else:
+                break
+
+            if loginauth(username, password):
+                return session(username)
+            else:
+                print("Invalid username or password")
