@@ -1,0 +1,38 @@
+'''the second assignment is to implement a child class minimum bank account that has a method called withdraw that ensure that withdrawal is not more than some minimum balance'''
+
+class BankAccount:
+
+    def __init__(self):
+        self.balance=0
+
+    '''def set(self,balance=0):
+        self.balance=balance'''
+    def deposit(self,amount):
+        self.balance += amount
+        return self.balance
+
+    def withdraw(self,amount):
+        self.balance -= amount
+        return self.balance
+
+    def get_balance(self):
+        return self.balance
+
+
+class MinimumBalanceAccount(BankAccount):
+        def __init__(self,minimum_balance):
+           BankAccount.__init__(self)
+           self.minimum_balance=minimum_balance
+
+        def withdraw(self,amount):
+            if amount > self.balance:
+                print('Sorry,Insufficient funds')
+            self.balance = self.balance - amount
+            return self.balance
+
+
+
+
+b=MinimumBalanceAccount("b")
+b.deposit(500)
+b.withdraw(600)
